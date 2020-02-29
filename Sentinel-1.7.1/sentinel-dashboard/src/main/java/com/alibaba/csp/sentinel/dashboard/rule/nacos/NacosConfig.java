@@ -44,8 +44,11 @@ public class NacosConfig {
         return s -> JSON.parseArray(s, FlowRuleEntity.class);
     }
 
+    @Value("${nacos.server.ip}")
+    private String nacos_server_ip;
+	
     @Bean
     public ConfigService nacosConfigService() throws Exception {
-        return ConfigFactory.createConfigService("10.128.91.184:8848");
+        return ConfigFactory.createConfigService(nacos_server_ip);
     }
 }
